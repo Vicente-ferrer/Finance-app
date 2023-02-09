@@ -7,27 +7,25 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const statusBarHeight = StatusBar.currentHeight
   ? StatusBar.currentHeight + 18
   : 64;
 
-function Header({ name }) {
+const Header = ({ welcome, name, handleClick }) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.user}>{name}</Text>
-        <TouchableOpacity
-          activeOpacity={0.9}
-          style={styles.btnUser}
-          onPress={() => alert("foi clicado")}
-        >
-          <Feather name="user" size={28} />
-        </TouchableOpacity>
+        <Text style={{ fontSize: 18, color: "black", fontWeight: "bold" }}>
+          {welcome}
+        </Text>
       </View>
     </View>
   );
-}
+};
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#3BA7B6",
@@ -47,6 +45,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "black",
     fontWeight: "bold",
+    marginLeft: "-30%",
   },
   btnUser: {
     width: 44,
